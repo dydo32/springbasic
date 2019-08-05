@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+	<import resource="data.xml" />
+	
+	<!-- 파라미터명으로 매핑해주는 템플릿 클래스 -->
+	<bean id="nameTemplate"	 class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="ds"/>
+	</bean>
+	<bean id="namedao" class="jdbc.etc.named.EmpDAOETCImpl">
+		<constructor-arg ref="nameTemplate"/>
+	</bean>
+	
+	<!-- insert를 편하게 하기위해서 제공되는 클래스 -->
+  	<bean id="simpleTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcInsert">
+		<constructor-arg ref="ds"/>
+	</bean>
+	<bean id="simpledao" class="jdbc.etc.simple.EmpDAOETCImpl">
+		<constructor-arg ref="simpleTemplate"/>
+	</bean>
+</beans>
