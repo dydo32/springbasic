@@ -1,5 +1,5 @@
 # springbasic
 
-> spring basic
-> spring di
-> spring jdbc 
+1. spring basic
+2. spring di
+3. spring jdbc 
