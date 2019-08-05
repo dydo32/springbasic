@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="dao" class="di.setter.basic.MemberDAO" />
+	<bean id="insa" class="di.setter.basic.InsaImpl">
+		<property name="dao" ref="dao"></property>
+		<!-- 
+			property태그의 name속성?
+			name속성은 호출할 setter메소드의 set을 빼고 첫 글자를 소문자로 바꾼 이름을 명시해야한다.
+			컨테이너가 정의된 bean을 생성할 때 <construct-arg>가 없으면 기본생성자를 호출해서 객체를 생성한다.
+		 -->
+	</bean>
+	
+	<bean id="logic" class="di.setter01.LogicImpl"/>
+	<bean id="service" class="di.setter01.MyServiceImpl">
+		<property name="name" value="김다영"/>
+		<property name="msg" value="메시지"/>
+		<property name="logic" ref="logic"/>
+	</bean>
+	
+	<bean id="dice" class="di.setter02.Dice"/>
+	<bean id="player" class="di.setter02.Player">
+		<property name="d" ref="dice"/>
+	</bean>
+	
+	<bean id="writedao" class="di.setter03.MysqlArticleDAO"/>
+	<!-- <bean id="writedao" class="di.setter03.OracleArticleDAO"/> -->
+	<bean id="mgr" class="di.setter03.WriteArticleMgr">
+		<property name="articleDAO" ref="writedao"></property>
+	</bean>
+	
+	<!-- final exam -->
+	<bean id="outputter" class="di.exam.ConsoleOutputter"/>
+	<!-- 	<bean id="outputter" class="di.exam.FileOutputter"/> -->
+	<bean id="messagebean" class="di.exam.MessageBean">
+		<constructor-arg value="김다영"/>
+		<property name="greeting" value="안녕하세요"/>
+		<property name="outputter" ref="outputter"/>
+	</bean>
+</beans>

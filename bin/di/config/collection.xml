@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+	<bean id="collection" class="di.collection.CollectionTest">
+		<property name="list">
+			<list>
+				<value>오라클</value>
+				<value>자바</value>
+				<value>swing</value>
+				<value>servlet</value>
+				<value>jsp</value>
+				<value>spring</value>
+				<value>mongodb</value>
+			</list>
+		</property>
+		<property name="map">
+			<map>
+				<entry>
+					<key>
+						<value>db</value>
+					</key>
+					<value>mongodb</value>
+				</entry>
+				<entry key="bigdata1" value="hadoop"/>
+				<entry key="bigdata2" value="flume"/>
+				<entry key="bigdata3" value="sqoop"/>
+				<entry key="bigdata4" value="hive"/>
+				<entry key="bigdata5" value="spark"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="constructor1" class="di.collection.ConstructorTest">
+		<constructor-arg value="100"/>
+		<constructor-arg value="200"/>
+	</bean>
+	<bean id="constructor2" class="di.collection.ConstructorTest">
+		<constructor-arg value="100" type="int"/>
+		<constructor-arg value="200" type="int"/>
+	</bean>
+	<bean id="constructor3" class="di.collection.ConstructorTest">
+		<constructor-arg value="100" name="num5"/>
+		<constructor-arg value="200" name="num6"/>
+	</bean>
+</beans>
